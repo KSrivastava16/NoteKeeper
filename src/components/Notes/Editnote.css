@@ -1,0 +1,56 @@
+.editor {
+  margin: 10px auto;
+  width: 70%;
+}
+
+.editor-component {
+  height: 400px;
+}
+
+.notes-error {
+  padding: 15px;
+  background-color: #ea5455;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  color: cornsilk;
+  width: 70%;
+}
+
+.button-save {
+  background-color: #00b7c2; /* #f0a500*/
+  width: 140px;
+  /* color: white; */
+}
+.button-save:hover {
+  background-color: #ff414d;
+  /* color: white; */
+}
+
+.button-delete {
+  width: 140px;
+  background-color: #ff4b5c;
+  color: white;
+}
+
+.button-delete:hover {
+  background-color: #f0a500;
+}
+.ck
+  .ck-content
+  .ck-editor__editable
+  .ck-rounded-corners
+  .ck-editor__editable_inline {
+  height: 800px !important;
+}
+
+@media (max-width: 768px) {
+  .editor {
+    margin: 10px auto;
+    width: 100%;
+  }
+
+  .editor-component {
+    height: 400px;
+  }
+}
