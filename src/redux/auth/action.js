@@ -1,5 +1,6 @@
 import { loginUser, getUserInfo, registerUser } from "./methods";
 import {
+  LOGIN,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   GET_USER_SUCCESS,
@@ -7,8 +8,14 @@ import {
   LOGOUT,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
+  GET_USER,
 } from "../../constants/action";
 //export const loginUser = { type: "LOGIN" };
+
+export const loginInitiate = () => ({
+  type: LOGIN,
+});
+
 export const loginSuccess = (payload) => ({
   type: LOGIN_SUCCESS,
   payload: payload,
@@ -24,6 +31,10 @@ export const login = ({ userName, password, history }) => {
 };
 
 export const logout = (history) => ({ type: LOGOUT, payload: history });
+
+export const getUserInitiate = () => ({
+  type: GET_USER,
+});
 
 export const getUserSuccess = (userInfo) => ({
   type: GET_USER_SUCCESS,

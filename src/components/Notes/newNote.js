@@ -50,7 +50,7 @@ const NewNote = ({ notes, show, closeModal }) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <button className="button">Create Note</button>
+            <button className="button create-note">Create Note</button>
           </div>
         </form>
       </div>

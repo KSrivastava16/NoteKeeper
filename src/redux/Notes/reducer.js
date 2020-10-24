@@ -9,6 +9,8 @@ import {
   CREATE_NOTE_FAILURE,
   GET_NOTE_SUCCESS,
   GET_NOTE_FAILURE,
+  GET_NOTES,
+  GET_NOTE,
 } from "../../constants/action";
 
 const initialState = {
@@ -21,14 +23,18 @@ const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   //   console.log("reached", type);
   switch (type) {
+    case GET_NOTES:
+      return { ...state, loading: true };
     case GET_NOTES_SUCCESS:
-      return { ...state, notes: payload.notes };
+      return { ...state, notes: payload.notes, loading: false };
     case GET_NOTES_FAILURE:
-      return { ...state, error: payload };
+      return { ...state, error: payload, loading: false };
+    case GET_NOTE:
+      return { ...state, loading: true };
     case GET_NOTE_SUCCESS:
-      return { ...state, note: payload.note };
+      return { ...state, note: payload.note, loading: false };
     case GET_NOTE_FAILURE:
-      return { ...state, error: payload };
+      return { ...state, error: payload, loading: false };
     case EDIT_NOTES_SUCCESS:
       return { ...state, notesSaved: true };
     case EDIT_NOTES_FAILURE:

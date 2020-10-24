@@ -1,0 +1,14 @@
+.loading {
+  margin-top: 3%;
+  padding: 10px;
+}
+
+.loading img {
+  border-radius: 35px;
+  border: none;
+}
+
+.loading h3 {
+  font-weight: bolder;
+  margin-top: 10px;
+}

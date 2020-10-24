@@ -6,6 +6,8 @@ import {
   getUser,
   registerUserSuccess,
   registerUserFailure,
+  loginInitiate,
+  getUserInitiate,
 } from "./action";
 
 import { getNotes } from "../Notes/action";
@@ -13,6 +15,7 @@ import { getNotes } from "../Notes/action";
 import auth from "../authoraization";
 
 export const loginUser = async (dispatch, userName, password, history) => {
+  dispatch(loginInitiate());
   try {
     const result = await fetch(`${process.env.REACT_APP_API}/login`, {
       method: "POST",
@@ -31,6 +34,7 @@ export const loginUser = async (dispatch, userName, password, history) => {
 };
 
 export const getUserInfo = async (dispatch) => {
+  dispatch(getUserInitiate());
   try {
     const result = await fetch(`${process.env.REACT_APP_API}/login`, {
       headers: {

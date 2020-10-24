@@ -16,6 +16,8 @@ import {
   CREATE_NOTE_FAILURE,
   GET_NOTE_SUCCESS,
   GET_NOTE_FAILURE,
+  GET_NOTE,
+  GET_NOTES,
 } from "../../constants/action";
 
 export const createNoteSuccess = () => ({
@@ -31,6 +33,8 @@ export const createNote = (note, history) => {
 };
 
 /*Single Note Fetching */
+export const getNotesInitiate = () => ({ type: GET_NOTES });
+
 export const getNoteSuccess = (note) => ({
   type: GET_NOTE_SUCCESS,
   payload: note,
@@ -40,7 +44,7 @@ export const getNoteFailure = (error) => ({
   type: GET_NOTE_FAILURE,
   payload: error,
 });
-
+export const getNoteInitiate = () => ({ type: GET_NOTE });
 export const getNote = (note_id) => {
   console.log("Note getter");
   return (dispatch) => get_Note(dispatch, note_id);
@@ -83,5 +87,8 @@ export const deleteNoteFailure = (error) => ({
 });
 
 export const deleteNote = (id, history) => {
-  return (dispatch) => delete_note(dispatch, id, history);
+  return (dispatch) => {
+    delete_note(dispatch, id, history);
+    dispatch(getNotes());
+  };
 };

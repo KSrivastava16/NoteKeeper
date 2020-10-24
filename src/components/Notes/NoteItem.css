@@ -7,6 +7,21 @@
   margin-bottom: 40px;
 }
 
+.note-item-footer {
+  margin-top: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  /* flex-direction: column */
+  flex-flow: column;
+  justify-content: center;
+  width: 50%;
+}
+
+.note-item-button {
+  margin-bottom: 10px;
+}
+
 @media (max-width: 768px) {
   .flex-container {
     justify-content: space-between;

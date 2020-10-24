@@ -8,6 +8,7 @@ import "./Notes.css";
 import { NavLink } from "react-router-dom";
 import { getNotes } from "../redux/Notes/action";
 import { getUser } from "../redux/auth/action";
+import Loading from "../components/Loading/Loading";
 const Notes = ({
   getUserInfo,
   getNotes,
@@ -16,6 +17,8 @@ const Notes = ({
   history,
   user,
   logout,
+  loading,
+  authLoading,
 }) => {
   const [modal, setModal] = useState(false);
   // const [notes, setNotes] = useState(null);
@@ -28,45 +31,66 @@ const Notes = ({
   };
   console.log("user", user);
   useEffect(() => {
-    if (user && user === null) {
-      history.push("/login");
-    }
     getUserInfo();
     getNotes();
   }, []);
-  console.log("notes", notes);
+  console.log("authLoading", authLoading);
+  console.log("loading", loading);
   return (
-    <div>
-      <div className="user-info">
-        <h4>
-          <i className="fas fa-user-tie"></i> Hi,{user && user.name}
-        </h4>
-        <br />
-        <button className="btn btn-primary" onClick={open}>
-          Add new Note
-        </button>
-        <NewNote
-          show={modal ? "show-modal" : "hide-modal"}
-          closeModal={close}
-        />
-      </div>
-      {notes && notes[0] && (
-        <h4 className="title">
-          {" "}
-          <i className="fas fa-clipboard"></i> Your Notes
-        </h4>
+    <React.Fragment>
+      {user ? (
+        <div>
+          <div className="user-info">
+            <h4>
+              <i className="fas fa-user-tie"></i>
+              {!authLoading ? (
+                <React.Fragment> Hi,{user && user.name}</React.Fragment>
+              ) : (
+                " User Loading"
+              )}
+            </h4>
+            <br />
+            <button className="button btn-primary" onClick={open}>
+              Add new Note
+            </button>
+            <NewNote
+              show={modal ? "show-modal" : "hide-modal"}
+              closeModal={close}
+            />
+          </div>
+
+          {!loading ? (
+            <React.Fragment>
+              {notes && notes[0] && (
+                <h4 className="title">
+                  {" "}
+                  <i className="fas fa-clipboard"></i> Your Notes
+                </h4>
+              )}
+              <div className="flex-container">
+                {notes && notes ? (
+                  notes &&
+                  notes.map((note) => {
+                    return <NoteItem note={note} key={note._id} />;
+                  })
+                ) : (
+                  <h1>No Notes Add...</h1>
+                )}
+              </div>
+            </React.Fragment>
+          ) : (
+            <Loading type="note" />
+          )}
+        </div>
+      ) : (
+        <div>
+          <h1>Hey please login to continue</h1>
+          <NavLink to="/login" className="button bg-success text-warning">
+            Login
+          </NavLink>
+        </div>
       )}
-      <div className="flex-container">
-        {notes && notes ? (
-          notes &&
-          notes.map((note) => {
-            return <NoteItem note={note} key={note._id} />;
-          })
-        ) : (
-          <h1>No Notes Add...</h1>
-        )}
-      </div>
-    </div>
+    </React.Fragment>
   );
 };
 const mapStateToProps = (state) => {
@@ -74,6 +98,8 @@ const mapStateToProps = (state) => {
     jobs: state.generalReducer.jobs,
     user: state.auth.userInfo,
     notes: state.notesReducer.notes,
+    loading: state.notesReducer.loading,
+    authLoading: state.auth.loading,
   };
 };
 

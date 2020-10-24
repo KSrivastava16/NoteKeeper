@@ -21,20 +21,21 @@
 .note-modal {
   background-color: #f08a5d;
   opacity: 1;
-
   margin-right: auto;
   margin-left: auto;
   height: 40%;
   width: 50%;
-  border-radius: 15px;
 }
 
 .note-modal-header {
-  border-radius: 15px;
+  /* border-radius: 15px; */
   padding: 5px;
   background-color: bisque;
   display: flex;
   justify-content: space-around;
+}
+.note-modal-header h4 {
+  font-weight: bolder;
 }
 
 .note-modal-title {
@@ -55,11 +56,13 @@
   margin-left: auto;
   margin-right: auto;
   padding: 2%;
+  border-radius: 35px;
 }
 
 .note-modal-body input {
   width: 80%;
   border: none;
+  height: 30px;
   border-radius: 15px;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -74,6 +77,10 @@
   padding: 10px;
 }
 
+.create-note {
+  background-color: #b8de6f;
+}
+
 .close-icon {
   background-color: #ff414d;
   height: 30px;
@@ -85,11 +92,16 @@
 
 .close-icon:hover {
   cursor: pointer;
+  background-color: #ff411a;
+  color: white;
 }
 
 @media (max-width: 768px) {
   .note-modal {
     width: 90%;
     height: 60%;
+  }
+  .note-modal-body {
+    margin-top: 20%;
   }
 }

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import newhook from "./newhoook";
 import { login } from "../redux/auth/action";
 import "./auth.css";
+import Loading from "./Loading/Loading";
 const Login = ({ login, currentUser, error, loading }) => {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -109,7 +110,7 @@ const Login = ({ login, currentUser, error, loading }) => {
               </p>{" "}
             </div>
           ) : (
-            <h1>loading...</h1>
+            <Loading type="login" />
           )}
         </div>
       ) : (
@@ -124,6 +125,7 @@ const mapStateToProps = (state) => {
     currentUser: state.auth.currentUser,
     loading: state.auth.loading,
     error: state.auth.err,
+    loading: state.auth.loading,
   };
 };
 

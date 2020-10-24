@@ -9,11 +9,15 @@ import {
   createNoteFailure,
   getNoteSuccess,
   getNoteFailure,
+  getNotes,
+  getNotesInitiate,
+  getNoteInitiate,
 } from "./action";
 
 import auth from "../authoraization";
 export const notesGetter = async (dispatch) => {
   console.log(process.env.REACT_APP_API);
+  dispatch(getNotesInitiate());
   try {
     const result = await fetch(`${process.env.REACT_APP_API}/note`, {
       headers: { "auth-token": auth() },
@@ -87,6 +91,7 @@ export const create_note = async (dispatch, note, history) => {
 
 export const get_Note = async (dispatch, id) => {
   console.log("Note getter");
+  dispatch(getNoteInitiate());
   try {
     const result = await fetch(
       process.env.REACT_APP_API + `/note/getNote?id=${id}`

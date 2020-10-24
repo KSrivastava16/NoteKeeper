@@ -2,6 +2,7 @@ import {
   LOGIN,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  GET_USER,
   GET_USER_SUCCESS,
   GET_USER_FAILURE,
   LOGOUT,
@@ -28,7 +29,7 @@ const reducer = (state = initialState, action) => {
       break;
     case LOGIN_SUCCESS:
       localStorage.setItem("user", JSON.stringify(payload.res));
-      // payload.history.push("/Notes");
+
       return {
         ...state,
         loginStatus: true,
@@ -44,10 +45,12 @@ const reducer = (state = initialState, action) => {
       console.log("REACHED");
       localStorage.removeItem("user");
       return { ...state, currentUser: null };
+    case GET_USER:
+      return { ...state, loading: true };
     case GET_USER_SUCCESS:
-      return { ...state, userInfo: payload.user };
+      return { ...state, userInfo: payload.user, loading: false };
     case GET_USER_FAILURE:
-      return { ...state, error: payload };
+      return { ...state, error: payload, loading: false };
 
     default:
       return state;

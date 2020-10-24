@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 import { editNote, deleteNote, getNote } from "../../redux/Notes/action";
 import "./Editnote.css";
 import { connect } from "react-redux";
-
+import Loading from "../Loading/Loading";
 const EditNote = ({
   note,
   deleteNote,
@@ -13,6 +13,7 @@ const EditNote = ({
   editNotes,
   match,
   getNote,
+  loading,
 }) => {
   const [noteText, setNoteText] = useState();
   const [msgSaved, setmsgSaved] = useState(false);
@@ -41,37 +42,49 @@ const EditNote = ({
   };
 
   return (
-    <div>
-      <h3> {note && note.title}</h3>
-      {notesSaved && (
-        <div className="save-msg">
-          <p>Your Notes Have been saved</p>
+    <React.Fragment>
+      {!loading ? (
+        <div>
+          <h2>
+            {" "}
+            <strong>{note && note.title}</strong>
+          </h2>
+          {notesSaved && (
+            <div className="save-msg">
+              <p>Your Notes Have been saved</p>
+            </div>
+          )}
+
+          <div className="editor">
+            <CKEditor
+              editor={ClassicEditor}
+              data={note && note.text ? note.text : "ABCDE"}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                onChange(data);
+              }}
+            />
+          </div>
+          <button className="button button-save" onClick={onSave}>
+            Save
+          </button>
+          <button className="button button-delete" onClick={onDelete}>
+            Delete
+          </button>
+        </div>
+      ) : (
+        <div>
+          <Loading type="note" />
         </div>
       )}
-
-      <div className="editor">
-        <CKEditor
-          editor={ClassicEditor}
-          data={note && note.text ? note.text : "ABCDE"}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            onChange(data);
-          }}
-        />
-      </div>
-      <button className="button button-save" onClick={onSave}>
-        Save
-      </button>
-      <button className="button button-delete" onClick={onDelete}>
-        Delete
-      </button>
-    </div>
+    </React.Fragment>
   );
 };
 
 const mapSateToProps = (state) => ({
   notesSaved: state.notesReducer.notesSaved,
   note: state.notesReducer.note,
+  loading: state.notesReducer.loading,
 });
 
 const mapDispatchToProps = (dispatch) => {
