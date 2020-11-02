@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import CKEditor from "@ckeditor/ckeditor5-react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { connect } from "react-redux";
 import { createNote } from "../../redux/Notes/action";

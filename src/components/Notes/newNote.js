@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import "./newNote.css";
+import "../../Css/newNote.css";
 import { getNotes } from "../../redux/Notes/action";
 import { connect } from "react-redux";
 const NewNote = ({ notes, show, closeModal }) => {

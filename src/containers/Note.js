@@ -82,6 +82,8 @@ const Notes = ({
             <Loading type="note" />
           )}
         </div>
+      ) : loading ? (
+        <Loading type="note" />
       ) : (
         <div>
           <h1>Hey please login to continue</h1>

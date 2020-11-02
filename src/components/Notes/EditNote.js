@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
-import CKEditor from "@ckeditor/ckeditor5-react";
+import React, { useEffect, useState } from "react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useHistory } from "react-router";
 import { editNote, deleteNote, getNote } from "../../redux/Notes/action";
-import "./Editnote.css";
+import "../../Css/Editnote.css";
 import { connect } from "react-redux";
 import Loading from "../Loading/Loading";
-const EditNote = ({
+export const EditNote = ({
   note,
   deleteNote,
   notesSaved,
@@ -56,6 +56,7 @@ const EditNote = ({
           )}
 
           <div className="editor">
+            {" "}
             <CKEditor
               editor={ClassicEditor}
               data={note && note.text ? note.text : "ABCDE"}

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { deleteNote } from "../../redux/Notes/action";
-import "./NoteItem.css";
+import "../../Css/NoteItem.css";
 import { connect } from "react-redux";
 const NoteItem = ({ deleteNote, note }) => {
   const deleteNoteItem = (id) => {
