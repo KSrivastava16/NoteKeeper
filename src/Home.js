@@ -6,7 +6,11 @@ import "./App.css";
 function Home({ currentUser }) {
   return (
     <div>
-      <h1 className="mb-3">Welcome to Notekeeper App</h1>
+      <div className="notekeeper-main ">
+        <h1 className="mb-3">
+          <i class="fas fa-clipboard"></i> Welcome to Notekeeper App
+        </h1>
+      </div>
       {!currentUser ? (
         <NavLink to="/Login" className="button btn-primary mt-2 ">
           Login first

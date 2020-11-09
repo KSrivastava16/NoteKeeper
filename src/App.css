@@ -36,6 +36,20 @@ body {
   margin-bottom: 20px;
 }
 
+.notekeeper-main {
+  padding: 20px;
+  background-color: #f05454;
+  color: #f6eec9;
+  margin-right: auto;
+  margin-left: auto;
+  width: 70%;
+  border-radius: 20px;
+  font-family: "Monotype Corsiva", "Bradley Hand ITC";
+  font-size: 36px;
+  letter-spacing: 5px;
+  font-weight: bolder;
+}
+
 @media (max-width: 768px) {
   .logged-in {
     width: 90%;
